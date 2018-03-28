@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 public class Service {
-    private static final String URL = "jdbc:mysql://localhost:3306/db_Test";
+    private static final String URL = "jdbc:mysql://localhost:3306/journal";
 
     public static Properties getProperties() {
         Properties properties = new Properties();
@@ -25,8 +25,11 @@ public class Service {
         return connection;
     }
 
-    public static ArrayList<User> selectUsers() {
-        String query = "SELECT * FROM users";
+    public static ArrayList<Attendances> selectUsers() {
+        String query = "USE journal\n" +
+                "SELECT attendances.idAttendance, students.Student, groups.numberGroup, lessons.Lesson, attendances.Data, attendances.State\n" +
+                "FROM attendances, students, groups, lessons\n" +
+                "WHERE attendances.student = students.idStudent and attendances.Group = groups.idGroup and attendances.Lesson = lessons.idLesson;";
         ResultSet resultSet;
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
@@ -35,16 +38,16 @@ public class Service {
             e.printStackTrace();
             return null;
         }
-        ArrayList<User> resultList = new ArrayList<User>();
+        ArrayList<Attendances> resultList = new ArrayList<Attendances>();
         try {
             while (resultSet.next()) {
-                long id = resultSet.getLong("id");
-                String name = resultSet.getString("name");
-                String login = resultSet.getString("login");
-                String password = resultSet.getString("password");
-                boolean gender = resultSet.getBoolean("gender");
-                Date birthDate = resultSet.getDate("birth_date");
-                resultList.add(new User(id, name, login, password, gender, birthDate));
+                long idAttendance = resultSet.getLong("idAttendance");
+                String Student = resultSet.getString("Student");
+                Long numberGroup = resultSet.getLong("numberGroup");
+                String Lesson = resultSet.getString("Lesson");
+                Date Data = resultSet.getDate("Data");
+                String State = resultSet.getString("State");
+                resultList.add(new Attendances(idAttendance, Student, numberGroup, Lesson, Data, State));
             }
         } catch(SQLException e){
             e.printStackTrace();

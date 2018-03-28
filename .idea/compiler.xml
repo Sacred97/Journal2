@@ -9,8 +9,8 @@
         <module name="Journal" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Journal" target="1.5" />
+    <bytecodeTargetLevel target="9">
+      <module name="Journal" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>

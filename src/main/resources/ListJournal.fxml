@@ -30,14 +30,14 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="7" GridPane.rowIndex="1" GridPane.rowSpan="5">
+      <TableView fx:id="attendanceTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="7" GridPane.rowIndex="1" GridPane.rowSpan="5">
         <columns>
-          <TableColumn minWidth="30.0" prefWidth="30.0" text="№" />
-          <TableColumn minWidth="150.0" prefWidth="150.0" text="Студент" />
-            <TableColumn prefWidth="75.0" text="Группа" />
-            <TableColumn minWidth="120.0" prefWidth="120.0" text="Предмет" />
-            <TableColumn minWidth="100.0" prefWidth="100.0" text="Дата" />
-            <TableColumn minWidth="70.0" prefWidth="70.0" text="Состояние" />
+          <TableColumn fx:id="idAttendanceColumn" minWidth="30.0" prefWidth="30.0" text="№" />
+          <TableColumn fx:id="StudentColumn" minWidth="150.0" prefWidth="150.0" text="Студент" />
+            <TableColumn fx:id="GroupColumn" prefWidth="75.0" text="Группа" />
+            <TableColumn fx:id="LessonColumn" minWidth="120.0" prefWidth="120.0" text="Предмет" />
+            <TableColumn fx:id="DataColumn" minWidth="100.0" prefWidth="100.0" text="Дата" />
+            <TableColumn fx:id="StateColumn" minWidth="70.0" prefWidth="70.0" text="Состояние" />
         </columns>
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -49,7 +49,7 @@
          <GridPane.margin>
             <Insets right="5.0" />
          </GridPane.margin></Button>
-      <Button mnemonicParsing="false" text="Редактировать" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+      <Button fx:id="editButton" mnemonicParsing="false" text="Редактировать" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin></Button>
