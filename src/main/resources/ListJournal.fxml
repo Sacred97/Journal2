@@ -45,11 +45,11 @@
       </TableView>
       <ChoiceBox prefWidth="150.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
       <Label text="Выберите предмет и группу для фильтра:" GridPane.columnSpan="4" GridPane.halignment="RIGHT" />
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Добавить" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+      <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButtonAction" prefHeight="25.0" prefWidth="79.0" text="Добавить" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets right="5.0" />
          </GridPane.margin></Button>
-      <Button fx:id="editButton" mnemonicParsing="false" text="Редактировать" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+      <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonAction" text="Редактировать" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin></Button>
