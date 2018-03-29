@@ -42,7 +42,7 @@ public class Service {
             while (resultSet.next()) {
                 long idAttendance = resultSet.getLong("idAttendance");
                 String Student = resultSet.getString("Student");
-                Long numberGroup = resultSet.getLong("numberGroup");
+                String numberGroup = resultSet.getString("numberGroup");
                 String Lesson = resultSet.getString("Lesson");
                 Date Data = resultSet.getDate("Data");
                 String State = resultSet.getString("State");
@@ -55,11 +55,11 @@ public class Service {
         return resultList;
     }
     public static boolean addStudent(Attendances attendances) {
-        String query = "INSERT INTO attendances (Student, numberGroup, Lesson, Data, State) VALUES (?,?,?,?,?)";
+        String query = "INSERT INTO attendances ((Student, attendances.Group, Lesson, Data, State) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
             preparedStatement.setString(1, attendances.getStudent());
-            preparedStatement.setLong(2, attendances.getNumberGroup());
+            preparedStatement.setString(2, attendances.getNumberGroup());
             preparedStatement.setString(3, attendances.getLesson());
             preparedStatement.setDate(4, attendances.getData());
             preparedStatement.setString(5, attendances.getState());
@@ -72,16 +72,17 @@ public class Service {
     }
 
     public static boolean updateStudent(Attendances attendances) {
-        String query = "UPDATE attendances SET Student = ?, numberGroup = ?, Lesson = ?, " +
-                "Data = ?, State = ? WHERE idAttendance = ?";
+        /*String query = "UPDATE attendances SET Student = ?, numberGroup = ?, Lesson = ?, " +
+                "Data = ?, State = ? WHERE idAttendance = ? ";*/
+        String query = "UPDATE attendances SET Data = ?, State = ? WHERE idAttendance = ?";
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
-            preparedStatement.setString(1, attendances.getStudent());
-            preparedStatement.setLong(2, attendances.getNumberGroup());
-            preparedStatement.setString(3, attendances.getLesson());
-            preparedStatement.setDate(4, attendances.getData());
-            preparedStatement.setString(5, attendances.getState());
-            preparedStatement.setLong(6, attendances.getIdAttendance());
+            //preparedStatement.setString(1, attendances.getStudent());
+            //preparedStatement.setString(2, attendances.getNumberGroup());
+           // preparedStatement.setString(3, attendances.getLesson());
+            preparedStatement.setDate(1, attendances.getData());
+            preparedStatement.setString(2, attendances.getState());
+            preparedStatement.setLong(3, attendances.getIdAttendance());
             preparedStatement.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();

@@ -23,7 +23,7 @@ public class ListJournal {
     private TableColumn<Attendances, String> StudentColumn;
 
     @FXML
-    private TableColumn<Attendances, Long> GroupColumn;
+    private TableColumn<Attendances, String> GroupColumn;
 
     @FXML
     private TableColumn<Attendances, String> LessonColumn;

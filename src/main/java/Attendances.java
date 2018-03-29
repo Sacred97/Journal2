@@ -3,12 +3,12 @@ import java.sql.Date;
 public class Attendances {
     private long idAttendance;
     private String Student;
-    private long numberGroup;
+    private String numberGroup;
     private String Lesson;
     private Date Data;
     private String State;
 
-    public Attendances(long idAttendance, String student, long numberGroup, String lesson, Date data, String state) {
+    public Attendances(long idAttendance, String student, String numberGroup, String lesson, Date data, String state) {
         this.idAttendance = idAttendance;
         Student = student;
         this.numberGroup = numberGroup;
@@ -33,11 +33,11 @@ public class Attendances {
         Student = student;
     }
 
-    public long getNumberGroup() {
+    public String getNumberGroup() {
         return numberGroup;
     }
 
-    public void setNumberGroup(long numberGroup) {
+    public void setNumberGroup(String numberGroup) {
         this.numberGroup = numberGroup;
     }
 

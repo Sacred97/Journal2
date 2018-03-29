@@ -17,6 +17,7 @@ public class ModifyController {
 
     private Attendances attendances;
 
+   // private Student student2;
 
     @FXML
     TextField studentTextField;
@@ -40,29 +41,51 @@ public class ModifyController {
     public void loadAction() {
         if(attendances == null){
             clearAction();
+            groupChoiceBox.setItems(FXCollections.observableArrayList("71415","71416","71417"));
+            lessonChoiceBox.setItems(FXCollections.observableArrayList("Английский язык", "Математика", "Физика"));
+            stateChoiceBox.setItems(FXCollections.observableArrayList("+","-","Б"));
         } else {
             studentTextField.setText(attendances.getStudent());
-            groupChoiceBox.setItems(FXCollections.observableArrayList("71415", "71416", "71417"));
-            lessonChoiceBox.setItems(FXCollections.observableArrayList("Английский язык", "Математика", "Физика"));
+            groupChoiceBox.setItems(FXCollections.observableArrayList(attendances.getNumberGroup()));
+            lessonChoiceBox.setItems(FXCollections.observableArrayList(attendances.getLesson()));
             dataPicker.setValue(attendances.getData().toLocalDate());
-            stateChoiceBox.setItems(FXCollections.observableArrayList("+", "-", "Б"));
+            stateChoiceBox.setItems(FXCollections.observableArrayList("+","-","Б"));
         }
     }
 
     @FXML
     private void saveAction() {
         String student = studentTextField.getText();
-        Long group = Long.valueOf(String.valueOf(groupChoiceBox.getItems()));
-        String lesson = String.valueOf(lessonChoiceBox.getItems());
+        String group = String.valueOf(groupChoiceBox.getValue());
+        if (String.valueOf(groupChoiceBox.getValue()).equals("71415")){
+            group=(String.valueOf('1'));
+        } else if (String.valueOf(groupChoiceBox.getValue()).equals("71416")){
+            group=String.valueOf('2');
+        } else if (String.valueOf(groupChoiceBox.getValue()).equals("71417")){
+            group=String.valueOf('3');
+        }
+        String lesson = String.valueOf(lessonChoiceBox.getValue());
+        if (String.valueOf(lessonChoiceBox.getValue()).equals("Английский язык")){
+            lesson=String.valueOf('1');
+        } else if (String.valueOf(lessonChoiceBox.getValue()).equals("Математика")){
+            lesson=String.valueOf('2');
+        } else if (String.valueOf(lessonChoiceBox.getValue()).equals("Физика")){
+            lesson=String.valueOf('3');
+        }
         Date data = Date.valueOf(dataPicker.getValue());
         String state = String.valueOf(stateChoiceBox.getItems());
+        if (String.valueOf(stateChoiceBox.getValue()).equals("+")){
+            state = String.valueOf('+');
+        } else if (String.valueOf(stateChoiceBox.getValue()).equals("-")){
+            state = String.valueOf('-');
+        } if (String.valueOf(stateChoiceBox.getValue()).equals("Б")){
+            state = String.valueOf('Б');
+        }
         if(attendances == null){
             attendances = new Attendances(0, student, group, lesson, data, state);
             Service.addStudent(attendances);
         } else {
-            attendances.setStudent(student);
-            attendances.setNumberGroup(group);
-            attendances.setLesson(lesson);
+           //attendances.setLesson(lesson);
             attendances.setData(data);
             attendances.setState(state);
             Service.updateStudent(attendances);
@@ -90,7 +113,4 @@ public class ModifyController {
     public void setAttendances(Attendances attendances) {
         this.attendances = attendances;
     }
-
-
-
 }
