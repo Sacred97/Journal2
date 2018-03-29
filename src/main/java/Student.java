@@ -1,14 +1,24 @@
-public class Student {
-    private long idStudent;
-    private String name;
-    private long Group;
+import java.sql.Date;
 
-    public long getIdStudent() {
-        return idStudent;
+public class Student {
+    private long id;
+    private String name;
+    private Date birth;
+    private String Group1;
+
+    public Student(long id, String name, Date birth, String group1) {
+        this.id = id;
+        this.name = name;
+        this.birth = birth;
+        Group1 = group1;
     }
 
-    public void setIdStudent(long idStudent) {
-        this.idStudent = idStudent;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -19,18 +29,19 @@ public class Student {
         this.name = name;
     }
 
-    public long getGroup() {
-        return Group;
+    public Date getBirth() {
+        return birth;
     }
 
-    public void setGroup(long group) {
-        Group = group;
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
 
-    public Student(long idStudent, String name, long group) {
+    public String getGroup1() {
+        return Group1;
+    }
 
-        this.idStudent = idStudent;
-        this.name = name;
-        Group = group;
+    public void setGroup1(String group1) {
+        Group1 = group1;
     }
 }

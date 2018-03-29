@@ -55,7 +55,7 @@ public class Service {
         return resultList;
     }
     public static boolean addStudent(Attendances attendances) {
-        String query = "INSERT INTO attendances ((Student, attendances.Group, Lesson, Data, State) VALUES (?,?,?,?,?)";
+        String query = "INSERT INTO attendances (Student, attendances.Group, Lesson, Data, State) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
             preparedStatement.setString(1, attendances.getStudent());
@@ -89,5 +89,31 @@ public class Service {
             return false;
         }
         return true;
+    }
+
+    public static ArrayList<Student> students() {
+        String query = "SELECT * FROM students";
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        ArrayList<Student> resultList = new ArrayList<Student>();
+        try {
+            while (resultSet.next()) {
+                long id = resultSet.getLong("idStudent");
+                String name = resultSet.getString("Student");
+                Date birth = resultSet.getDate("BirthDate");
+                String Group1 = resultSet.getString("Group");
+                resultList.add(new Student(id, name, birth, Group1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return resultList;
     }
 }
